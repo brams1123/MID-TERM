@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour {
 	public Boundary boundary;
 
 	public Camera camera;
-	
-	// PRIVATE INSTANCE VARIABLES
-	private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
+    public GameController gameController;
+
+    // PRIVATE INSTANCE VARIABLES
+    private Vector2 _newPosition = new Vector2(0.0f, 0.0f);
 	
 	// Use this for initialization
 	void Start () {
@@ -53,4 +54,23 @@ public class PlayerController : MonoBehaviour {
 			this._newPosition.x = this.boundary.xMax;
 		}
 	}
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+           
+            this.gameController.LivesValue -= 1;
+        }
+
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+         
+            this.gameController.ScoreValue += 100;
+        }
+
+
+    }
 }
